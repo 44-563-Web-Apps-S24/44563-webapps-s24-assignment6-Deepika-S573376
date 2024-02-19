@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Discount Calculator</title>
+</head>
+<body>
+
+<h1>Deepika discount calculations</h1>
+
+    <label for="Price">Enter price per</label>
+    <input type="number" id="Price" value="10"> 
+    <br>
+    <br>
+    <label for="count_element">Enter the number of items</label>
+    <input type="number" id="count_element" value="9"> 
+    <br>
+    <br>
+    <label for="discount">Enter the discount percent</label>
+    <input type="number" id="discount" value="5"> 
+    <br>
+    <br>
+    <button onclick="discount()">Show total</button>
+    <br>
+    <p id="result"></p>
+<hr>
+    <form id="calculatorForm">
+        <input type="number" id="myprice" placeholder="Enter price">
+        <br>
+        <br>
+        <input type="number" id="mydiscount" placeholder="Enter discount">
+        <br>
+        <br>
+        <label>Sum</label>
+        <input type="radio" name="operation" value="sum" onclick="chooseOp ()">
+        <br>
+        <br>
+        <label>Multiply</label>
+        <input type="radio" name="operation" value="multiply" onclick="chooseOp ()">
+        <br>
+        <br>
+        <label>Exponent</label>
+        <input type="radio" name="operation" value="exponent" onclick="chooseOp ()">
+        <br>
+        <br>
+
+     </form>
+     <div id="myresult"></div>
+<script> 
+
+    function discount() 
+    {
+        var PriceInput = parseFloat(document.getElementById("Price").value);
+        var CountInput = parseInt(document.getElementById("count_element").value);
+        var DiscountInput = parseInt(document.getElementById("discount").value);
+        var toShow = "";
+        for (var i = DiscountInput; i <= DiscountInput + 4; i++) 
+        {
+            var TotalPrice = PriceInput - (PriceInput * i / 100);
+            toShow += i + "% is " + (TotalPrice * CountInput).toFixed(1) + "; ";
+        }
+        document.getElementById("result").innerHTML = "Totals are: " + toShow;
+    }
+    function chooseOp() 
+    {
+        var price = parseFloat(document.getElementById('myprice').value);
+        var discount = parseFloat(document.getElementById('mydiscount').value);
+        var operation = document.querySelector('input[name="operation"]:checked').value;
+        var resultText;
+        switch (operation)
+        {
+            case 'sum':
+                resultText = price + discount;
+                break;
+            case 'multiply':
+                resultText = price * discount;
+                break;
+            case 'exponent':
+                resultText = Math.pow(price, discount);
+                break;
+            default:
+                break;
+        }
+
+        document.getElementById('myresult').innerHTML = `Result: ${resultText}`;
+    }
+
+</script>
+
+</body>
+</html>
